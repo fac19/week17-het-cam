@@ -7,6 +7,8 @@ import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import Nav from "./Navbar.style.js";
 import { secondaryColour, primaryColour } from "../colours.js";
 import netlifyIdentity from "netlify-identity-widget";
+import { auth } from "../../../firebase";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,6 +29,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Navbar = () => {
   const classes = useStyles();
+  const history = useHistory();
 
   return (
     <Nav>
@@ -36,7 +39,21 @@ const Navbar = () => {
       <Link to="/my-profile" id="nav-icon-myProfile" aria-label="My profile">
         <PersonIcon className={classes.root} />
       </Link>
-      <Link to="/" aria-label="Logout" onClick={() => netlifyIdentity.open()}>
+      <Link
+        to="/"
+        aria-label="Logout"
+        onClick={() => {
+          history.push("/");
+          auth
+            .signOut()
+            .then(function () {
+              console.log("signed out");
+            })
+            .catch(function (error) {
+              console.log("not signed out");
+            });
+        }}
+      >
         <ExitToAppIcon className={classes.root} />
       </Link>
     </Nav>

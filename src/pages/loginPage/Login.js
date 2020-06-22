@@ -1,27 +1,16 @@
 import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import Heading from "../../components/global/heading/Heading";
-import {
-  DropdownCountries,
-  DropdownGender,
-} from "../../components/global/forms/dropdown/Dropdown";
-import DateInput from "../../components/global/forms/dateInput/DateInput";
-import TextBox from "../../components/global/forms/textBox/TextBox";
 import { TextButton } from "../../components/global/buttons/Buttons";
-import { FormContainer, FormInputWrapper } from "./SignUp.style";
+import { FormContainer, FormInputWrapper } from "../signUpPage/SignUp.style";
 import { auth, firestore } from "../../firebase";
-// import { AppContext } from "../../utils/AppContext";
 
-const SignUp = () => {
+const Login = () => {
   const history = useHistory();
 
   const [form, setForm] = React.useState({
-    name: "",
     email: "",
     password: "",
-    dob: "",
-    gender: "",
-    country: "",
   });
 
   const handleChange = (event) => {
@@ -33,20 +22,8 @@ const SignUp = () => {
     event.preventDefault();
 
     auth
-      .createUserWithEmailAndPassword(form.email, form.password)
-      .then(() => {
-        delete form.password;
-        firestore
-          .collection("users")
-          .add(form)
-          .then(function (docRef) {
-            console.log("Document written with ID: ", docRef.id);
-          })
-          .catch(function (error) {
-            console.error("Error adding document: ", error);
-          });
-      })
-      .then(history.push("/my-missions"))
+      .signInWithEmailAndPassword(form.email, form.password)
+      .then(() => history.push("/my-missions"))
       .catch(function (error) {
         // Handle Errors here.
         var errorCode = error.code;
@@ -64,17 +41,8 @@ const SignUp = () => {
 
   return (
     <>
-      <Heading>Before you begin...</Heading>
+      <Heading>Login...</Heading>
       <FormContainer onSubmit={handleSubmit}>
-        <FormInputWrapper>
-          <input
-            label={"Name"}
-            name={"name"}
-            value={form.name}
-            placeholder={"Your Name"}
-            onChange={handleChange}
-          />
-        </FormInputWrapper>
         <FormInputWrapper>
           <input
             label={"Email"}
@@ -89,19 +57,10 @@ const SignUp = () => {
             label={"Password"}
             name={"password"}
             value={form.password}
-            type={"password"}
             placeholder={"Please enter a password"}
             onChange={handleChange}
+            type={"password"}
           />
-        </FormInputWrapper>
-        <FormInputWrapper>
-          <DateInput onChange={handleChange} />
-        </FormInputWrapper>
-        <FormInputWrapper>
-          <DropdownCountries onChange={handleChange} />
-        </FormInputWrapper>
-        <FormInputWrapper>
-          <DropdownGender onChange={handleChange} />
         </FormInputWrapper>
         <TextButton type={"submit"} text={"Get started!"} />
       </FormContainer>
@@ -109,4 +68,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default Login;

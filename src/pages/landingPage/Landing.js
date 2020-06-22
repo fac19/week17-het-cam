@@ -27,8 +27,8 @@ const useStyles = makeStyles({
 
 const Landing = () => {
   const classes = useStyles();
-
   const history = useHistory();
+
   return (
     <LandingContainer>
       <Heading>Enterprise Adventure</Heading>
@@ -37,6 +37,10 @@ const Landing = () => {
         <Link to="/about" className={classes.links}>
           Learn More About the App
         </Link>
+        <TextButton
+          text={"Login Here!"}
+          onClick={() => history.push("/login")}
+        />
         <TextButton
           text={"Join the Movement!"}
           onClick={() => {
