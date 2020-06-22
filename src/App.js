@@ -8,24 +8,33 @@ import MyProfile from "./pages/myProfilePage/MyProfile";
 import Mission from "./pages/missionPage/Mission";
 import AppContainer from "./App.style";
 import netlifyIdentity from "netlify-identity-widget";
-import auth from "../src/utils/auth";
+import authFunction from "../src/utils/auth";
 import { loginUser, logoutUser } from "../src/utils/identityActions";
 import { AppContextProvider } from "./utils/AppContext";
+import { auth } from "./firebase";
 
 const App = () => {
   const [userInfo, setUserInfo] = React.useState({});
-  React.useEffect(() => {
-    const user = netlifyIdentity.currentUser();
+
+  auth.onAuthStateChanged(function (user) {
     if (user) {
-      setUserInfo({ user: user });
-    } else {
-      loginUser();
+      console.log("HEllO", user.uid);
+      // history.push("/my-missions");
     }
-    netlifyIdentity.on("login", (user) => setUserInfo({ user }, loginUser()));
-    netlifyIdentity.on("logout", (user) =>
-      setUserInfo({ user: null }, logoutUser()),
-    );
-  }, []);
+  });
+
+  // React.useEffect(() => {
+  //   const user = netlifyIdentity.currentUser();
+  //   if (user) {
+  //     setUserInfo({ user: user });
+  //   } else {
+  //     loginUser();
+  //   }
+  //   netlifyIdentity.on("login", (user) => setUserInfo({ user }, loginUser()));
+  //   netlifyIdentity.on("logout", (user) =>
+  //     setUserInfo({ user: null }, logoutUser()),
+  //   );
+  // }, []);
 
   return (
     <AppContextProvider>
@@ -39,15 +48,18 @@ const App = () => {
 
             <Route
               path="/my-profile"
-              component={auth(MyProfile, netlifyIdentity.currentUser())}
+              component={authFunction(MyProfile, netlifyIdentity.currentUser())}
             />
             <Route
               path="/my-missions"
-              component={auth(MyMissions, netlifyIdentity.currentUser())}
+              component={authFunction(
+                MyMissions,
+                netlifyIdentity.currentUser()
+              )}
             />
             <Route
               path="/mission/:number"
-              component={auth(Mission, netlifyIdentity.currentUser())}
+              component={authFunction(Mission, netlifyIdentity.currentUser())}
             />
           </Switch>
         </Router>

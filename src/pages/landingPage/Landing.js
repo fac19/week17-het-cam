@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Heading from "../../components/global/heading/Heading";
 import { useHistory } from "react-router-dom";
 import { TextButton } from "../../components/global/buttons/Buttons";
-import netlifyIdentity from "netlify-identity-widget";
+// import netlifyIdentity from "netlify-identity-widget";
 import { makeStyles } from "@material-ui/core/styles";
 import { LandingContainer, LandingWrapper, StyledImg } from "./Landing.style";
 import ImgWrapper from "../../components/global/images/ImgWrapper";
@@ -40,7 +40,7 @@ const Landing = () => {
         <TextButton
           text={"Join the Movement!"}
           onClick={() => {
-            netlifyIdentity.open();
+            // netlifyIdentity.open();
             history.push(`/signup`);
           }}
         />
