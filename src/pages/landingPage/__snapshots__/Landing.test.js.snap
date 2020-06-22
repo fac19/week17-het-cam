@@ -1,0 +1,129 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Landing page component is styled 1`] = `
+.c1 {
+  font-family: "Josefin Sans",sans-serif;
+  font-size: 2rem;
+  color: #032049;
+  text-align: center;
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  height: 80vh;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin: 0;
+}
+
+.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  text-align: center;
+  -webkit-box-pack: space-around;
+  -webkit-justify-content: space-around;
+  -ms-flex-pack: space-around;
+  justify-content: space-around;
+  height: 100%;
+  width: 100%;
+}
+
+.c3 {
+  padding: 1rem;
+  width: 6rem;
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  align-self: center;
+}
+
+.c4 {
+  text-align: center;
+}
+
+@media (min-width:600px) {
+  .c1 {
+    font-size: 4rem;
+  }
+}
+
+@media (min-width:768px) {
+  .c3 {
+    width: 8rem;
+  }
+}
+
+<section
+  className="c0"
+>
+  <h1
+    className="c1"
+  >
+    Enterprise Adventure
+  </h1>
+  <section
+    className="c2"
+  >
+    <img
+      alt="rocket"
+      className="c3"
+      src="rocket.svg"
+    />
+    <a
+      className="makeStyles-links-1"
+      href="/about"
+      onClick={[Function]}
+    >
+      Learn More About the App
+    </a>
+    <button
+      className="MuiButtonBase-root MuiButton-root MuiButton-contained makeStyles-root-2"
+      disabled={false}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onDragLeave={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchEnd={[Function]}
+      onTouchMove={[Function]}
+      onTouchStart={[Function]}
+      tabIndex={0}
+      type="button"
+    >
+      <span
+        className="MuiButton-label"
+      >
+        Join the Movement!
+      </span>
+    </button>
+  </section>
+  <div
+    className="c4"
+  >
+    <img
+      alt="Teach a Man to Fish logo"
+      src="logo.png"
+    />
+  </div>
+</section>
+`;
